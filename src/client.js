@@ -1,5 +1,18 @@
 import React      from 'react';
 import ReactDOM   from 'react-dom';
-import App        from 'components/App';
+import { BrowserRouter as Router} from 'react-router-dom';
+import routes from './routes';
+import { Provider } from 'react-redux';
+import configureStore from './redux/configureStore';
 
-ReactDOM.render(<App />, document.getElementById('react-view'));
+const store = configureStore();
+
+const component = (
+<Provider store={store}>	
+	<Router>
+      {routes}
+    </Router>
+</Provider>   
+)
+
+ReactDOM.render(component, document.getElementById('react-view'));
